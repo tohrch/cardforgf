@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2acac;
+    font-family: 'Mochiy Pop P One', sans-serif;
+  }
+
+
+  input#open {
+    display: none;
+  }
+  
+  .card {
+    position: relative;
+    width: 300px;
+    height:300px;
+    transform-style: preserve-3d;
+      transform: perspective(2500px);
+    transition: .3s;
+  }
+  
+  .card-front {
+    position: relative;
+    background-color: #fff0f3;
+    width: 300px;
+    height:300px;
+    transform-origin: left;
+    box-shadow: inset 100px 20px 100px rgba(0,0,0,.15), 30px 0 50px rgba(0,0,0,0.3);
+    transition: .3s;
+  }
+  
+  .card-front:before {
+    content:"";
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    background-color: #d04e4e;
+    top: 10px;
+    left: 10px;
+  }
+  
+  .card-inside {
+    position: absolute;
+    background-color: #fff0f3;
+    width: 300px;
+    height:300px;
+    z-index:-1;
+    left:0;
+    top:0;
+    box-shadow: inset 100px 20px 100px rgba(0,0,0,0.22), 100px 20px 100px rgba(0,0,0,0.1);
+  }
+  
+  .open {
+    position: absolute;
+    width: 300px;
+    height:300px;
+    left:0;
+    top:0;
+    background-color: transparent;
+    z-index:6;
+    cursor: pointer;
+  }
+  
+  #open:checked ~ .card-front {
+    transform: rotateY(-155deg);
+    box-shadow: inset 100px 20px 100px rgba(0,0,0,.13), 30px 0 50px rgba(0,0,0,0.1);
+  }
+  
+  #open:checked ~ .card-front:before {
+    z-index:5;
+    background-color: #fff0f3;
+    width:300px;
+    height:300px;
+    top:0;
+    left:0;
+    box-shadow: inset 100px 20px 100px rgba(0,0,0,.1), 30px 0 50px rgba(0,0,0,0.1);
+  }
+
+
+  .note {
+    position: relative;
+    width: 200px;
+    height: 150px;
+    background-color: #fff0f3;
+    top:75px;
+    left:50px;
+    color: #333;
+    font-size:30px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    filter: drop-shadow(0 0 20px rgba(0,0,0,0.3));
+  }
+
+
+  .note:before, .note:after {
+    position: absolute;
+    content:"";
+    background-color: #ba1c1c;
+    width: 40px;
+    height:40px;
+  }
+  
+  .note:before {
+    transform: rotate(-45deg);
+    top:-20px;
+    left:80px;
+  }
+  
+  .note:after {
+    border-radius:50%;
+    top:-35px;
+    left:65px;
+    box-shadow:30px 0 #ba1c1c;
+  }
+  
+  .heart {
+    position: relative;
+    background-color: #d04e4e;
+    height: 40px;
+    width:40px;
+    top: 50px;
+    left:130px;
+    
+    transform: rotate(-45deg);
+    animation: .8s beat infinite;
+    z-index: 100;
+  }
+    
+  .heart:before, .heart:after {
+    content:"";
+    background-color: #d04e4e;
+    border-radius:50%;
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    z-index: 100;
+    }
+    
+  .heart:before {
+    top:-20px;
+    left:0;
+    z-index: 100;
+  }
+    
+  .heart:after {
+    left:20px;
+    top:0;
+    z-index: 100;
+  }
+  
+  .bolded {
+    font-weight: bolder;
+  }
+
+  .second {
+    font-size: 18px;
+  }
+
+  .third {
+    font-size: 20px;
+  }
+
+  .lovey-colors {
+    color: #993333;
+  }
+
+  p {
+    font-size: 15px;
+    padding-left: 10px;
+  }
+
+  @keyframes close {
+      0%, 100% {
+          transform: scale(1, .05);
+      }
+      5%, 95% {
+          transform: scale(1, 1);
+      }
+  }
+  
+  @keyframes beat {
+    0%, 40%, 100% {
+      transform: scale(1) rotate(-45deg);
+    }
+    25%, 60% {
+      transform: scale(1.1) rotate(-45deg);
+    }
+  }
+ #rabbit-container {
+    cursor: pointer;
+}
+
+#rabbit {
+    width: 200px; /* Adjust size as needed */
+    transition: transform 0.2s;
+}
+
+#rabbit:active {
+    transform: scale(0.95); /* Makes the rabbit look like it’s being pressed */
+}
+.container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.rabbit {
+  cursor: pointer;
+  width: 100px;
+  height: auto;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.7); /* Darker background for game-like feel */
+  backdrop-filter: blur(8px); /* Stronger blur effect for a more pronounced look */
+  font-family: 'Press Start 2P', cursive; /* Pixelated font */
+}
+
+.modal-content {
+  background-color: #222; /* Dark background for the modal */
+  margin: 15% auto;
+  padding: 20px;
+  border: 3px solid #dd00ff; /* Neon green border for a retro game feel */
+  width: 80%;
+  max-width: 600px;
+  position: relative;
+  box-shadow: 0 0 15px rgba(234, 0, 255, 0.5); /* Glowing effect */
+  border-radius: 10px;
+}
+
+.close {
+  color: #dd00ff;
+  font-size: 32px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #b100cc;
+}
+
+.pixel-text {
+  font-size: 18px; /* Pixelated text size */
+  color: #ff00ee; /* Neon green text color */
+  text-shadow: 1px 1px 0 #000; /* Shadow for a more retro look */
+  line-height: 1.5;
+}
+
+.carrots {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Ensure clicks pass through to the modal */
+}
+
+.carrot {
+  position: absolute;
+  width: 80px; /* Adjust size as needed */
+  height: 80px; /* Adjust size as needed */
+  background-image: url('assets/1a766c9c11e9cbe9e2d7f49a2b894f01-removebg-preview.png'); /* Make sure you have a carrot image */
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+background-elements {
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  pointer-events: none; /* Ensure clicks pass through to the modal */
+}
+
+.heart {
+  position: absolute;
+  width: 150px; /* Adjust size as needed */
+  height: 150px; /* Adjust size as needed */
+  background-image: url('assets/1a766c9c11e9cbe9e2d7f49a2b894f01-removebg-preview.png'); /* Make sure you have a heart image */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  transform: translate(-20%, -20%);
+  opacity: 0.3; /* Adjust opacity as needed */
+}
